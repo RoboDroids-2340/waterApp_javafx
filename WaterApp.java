@@ -27,8 +27,11 @@ public class WaterApp extends Application {
             }); 
             return new Scene(console);
         }
+        else if (layout.equals("waterreport")) {
+            return new Scene(new WaterSourceReportScreen());
+        }
         else {
-            return new Scene(new ConsoleScreen());
+            return null;
         }
     }
 }
