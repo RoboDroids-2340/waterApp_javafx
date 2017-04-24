@@ -1,3 +1,5 @@
+package view;
+
 import javafx.scene.layout.StackPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
