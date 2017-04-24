@@ -11,6 +11,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import java.util.HashMap;
+import java.util.Map;
+import model.UserModel;
+import model.UserLevel;
 
 public class LoginScreen extends StackPane {
     private Button loginButton;
@@ -34,6 +38,5 @@ public class LoginScreen extends StackPane {
     public Button getRegisterButton() {
         return registerButton;
     }
+
 }
-
-
