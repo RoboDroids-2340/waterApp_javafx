@@ -25,12 +25,17 @@ public class WaterApp extends Application {
             console.getWaterReportButton().setOnAction((e) -> {
                 stage.setScene(setLayout("waterreport", stage));
             }); 
+            console.getWaterPurityButton().setOnAction((e) -> {
+                stage.setScene(setLayout("waterpurityreport", stage));
+            });
             return new Scene(console);
         }
         else if (layout.equals("waterreport")) {
             return new Scene(new WaterSourceReportScreen());
         }
-        else {
+        else if (layout.equals("waterpurityreport")) {
+            return new Scene(new WaterPurityReportScreen());
+        } else {
             return null;
         }
     }
