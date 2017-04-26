@@ -38,7 +38,7 @@ public class WaterPurityReportModel implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Report id: %d%n Latitude: %d, Longitude: %d%n Condition: %s%n"
+        return String.format("Report id: %d%n Latitude: %f, Longitude: %f%n Condition: %s%n"
             + " Virus PPM: %d, Contaminent PPM:%d", id, lat, longitude, condition, virusPPM, contaminentPPM);
     }
 

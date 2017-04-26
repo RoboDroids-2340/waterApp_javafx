@@ -35,7 +35,7 @@ public class WaterSourceReportModel implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Report id: %d%n Latitude: %d, Longitude: %d%n Condition: %s%n"
+        return String.format("Report id: %d%n Latitude: %f, Longitude: %f%n Condition: %s%n"
             + " type:%s%n", id, lat, longitude, condition, type);
     }
 

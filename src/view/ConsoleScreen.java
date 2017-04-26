@@ -14,6 +14,8 @@ public class ConsoleScreen extends StackPane {
     private Button waterPurityButton;
     private Button logoutButton;
     private Button editProfileButton;
+    private Button viewSourceReportButton;
+    private Button viewPurityReportButton;
     public ConsoleScreen() {
         VBox middle = new VBox();
         middle.setAlignment(Pos.CENTER);
@@ -23,8 +25,11 @@ public class ConsoleScreen extends StackPane {
         editProfileButton = new Button("Edit Profile");
         waterReportButton = new Button("Create New Water Source Report");
         waterPurityButton = new Button("Create New Water Purity Report");
+        viewPurityReportButton = new Button("View Purity Reports");
+        viewSourceReportButton = new Button("View Source Reports");
         logoutButton = new Button("Logout");
-        middle.getChildren().addAll(waterReportLabel, editProfileButton, waterReportButton, waterPurityButton, logoutButton);
+        middle.getChildren().addAll(waterReportLabel, editProfileButton, waterReportButton, waterPurityButton, 
+                viewPurityReportButton, viewSourceReportButton, logoutButton);
         getChildren().addAll(middle);
     }
 
@@ -42,6 +47,14 @@ public class ConsoleScreen extends StackPane {
 
     public Button getLogoutButton() {
         return logoutButton;
+    }
+    
+    public Button getViewSourceButton() {
+        return viewSourceReportButton;
+    }
+
+    public Button getViewPurityButton() {
+        return viewPurityReportButton;
     }
 }
 

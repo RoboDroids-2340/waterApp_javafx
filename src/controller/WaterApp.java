@@ -73,8 +73,14 @@ public class WaterApp extends Application {
             console.getEditProfileButton().setOnAction((e) -> {
                 stage.setScene(setLayout("editprofile", stage));
             });
+            console.getViewPurityButton().setOnAction((e) -> {
+                stage.setScene(setLayout("viewpurity", stage));
+            });
+            console.getViewSourceButton().setOnAction((e) -> {
+                stage.setScene(setLayout("viewsource", stage));
+            });
             return new Scene(console);
-        }
+        } 
         else if (layout.equals("waterreport")) {
             WaterSourceReportScreen source= new WaterSourceReportScreen();
             source.getBackButton().setOnAction((e) -> {
@@ -82,6 +88,7 @@ public class WaterApp extends Application {
             });
             source.getSubmitButton().setOnAction((e) -> {
                 WaterSourceReportModel model = source.getReport();
+                ReportWriter.sourceReports.add(model);
                 stage.setScene(setLayout("console", stage));
             });
             return new Scene(source);
@@ -108,7 +115,23 @@ public class WaterApp extends Application {
                 stage.setScene(setLayout("console", stage));
             });
             return new Scene(edit);
-        } else {
+        }
+        else if (layout.equals("viewpurity")) {
+            WaterPurityViewScreen purityView = new WaterPurityViewScreen();
+            purityView.getBackButton().setOnAction((e) -> {
+                stage.setScene(setLayout("console", stage));
+            }); 
+            return new Scene(purityView);
+        } 
+        else if (layout.equals("viewsource")) {
+            WaterSourceViewScreen sourceView = new WaterSourceViewScreen();
+            sourceView.getBackButton().setOnAction((e) -> {
+                stage.setScene(setLayout("console", stage));
+            }); 
+            return new Scene(sourceView);
+
+        }
+        else {
             return null;
         }
     }
