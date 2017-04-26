@@ -17,34 +17,39 @@ public class WaterApp extends Application {
 
     @Override
     public void start(Stage stage) {
-        LoginScreen loginScreen = new LoginScreen();
-        loginScreen.getLoginButton().setOnAction((e) -> {
-            TextInputDialog userinput = new TextInputDialog("Username");
-            userinput.setTitle("username");
-            userinput.setContentText("Enter Username: ");
-            Optional<String> username = userinput.showAndWait();
-            TextInputDialog passinput = new TextInputDialog("Password");
-            passinput.setTitle("Password");
-            passinput.setContentText("Enter Password: ");
-            Optional<String> password = passinput.showAndWait();
-            if (password.isPresent() && username.isPresent()) {
-                if (AccountUtil.loginValid(new UserModel(username.get(), password.get()))) {
-                    stage.setScene(setLayout("console", stage));
-                }
-            }
-        });
-        stage.setScene(new Scene(loginScreen));
+        stage.setScene(setLayout("login", stage));
         stage.show(); 
     }
 
     public Scene setLayout(String layout, Stage stage) {
-        if (layout.equals("console")) {
+        if (layout.equals("login")) {
+            LoginScreen loginScreen = new LoginScreen();
+            loginScreen.getLoginButton().setOnAction((e) -> {
+                TextInputDialog userinput = new TextInputDialog("Username");
+                userinput.setTitle("username");
+                userinput.setContentText("Enter Username: ");
+                Optional<String> username = userinput.showAndWait();
+                TextInputDialog passinput = new TextInputDialog("Password");
+                passinput.setTitle("Password");
+                passinput.setContentText("Enter Password: ");
+                Optional<String> password = passinput.showAndWait();
+                if (password.isPresent() && username.isPresent()) {
+                    if (AccountUtil.loginValid(new UserModel(username.get(), password.get()))) {
+                        stage.setScene(setLayout("console", stage));
+                    }
+                }
+            });
+        }
+        else if (layout.equals("console")) {
             ConsoleScreen console = new ConsoleScreen();
             console.getWaterReportButton().setOnAction((e) -> {
                 stage.setScene(setLayout("waterreport", stage));
             }); 
             console.getWaterPurityButton().setOnAction((e) -> {
                 stage.setScene(setLayout("waterpurityreport", stage));
+            });
+            console.getLogoutButton().setOnAction((e) -> {
+                stage.setScene(setLayout("login", stage));
             });
             return new Scene(console);
         }
