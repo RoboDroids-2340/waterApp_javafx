@@ -70,6 +70,9 @@ public class WaterApp extends Application {
             console.getLogoutButton().setOnAction((e) -> {
                 stage.setScene(setLayout("login", stage));
             });
+            console.getEditProfileButton().setOnAction((e) -> {
+                stage.setScene(setLayout("editprofile", stage));
+            });
             return new Scene(console);
         }
         else if (layout.equals("waterreport")) {
@@ -91,6 +94,17 @@ public class WaterApp extends Application {
                 stage.setScene(setLayout("console", stage));
             });
             return new Scene(purity);
+        } 
+        else if (layout.equals("editprofile")) {
+            EditProfileScreen edit = new EditProfileScreen();
+            edit.getSubmitButton().setOnAction((e) -> {
+                edit.update();
+                stage.setScene(setLayout("console", stage));
+            });
+            edit.getBackButton().setOnAction((e) -> {
+                stage.setScene(setLayout("console", stage));
+            });
+            return new Scene(edit);
         } else {
             return null;
         }

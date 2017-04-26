@@ -7,17 +7,14 @@ import java.util.HashMap;
 
 public class AccountUtil {
 
-    static Map<UserModel, UserModel> accounts = new HashMap<UserModel, UserModel>();
+    public static Map<UserModel, UserModel> accounts = new HashMap<UserModel, UserModel>();
 
     public static boolean loginValid(UserModel user) {
-        if (accounts.keySet().contains(user)) {
-            return true;
-        } else {
-            return false;
-        }
+        return accounts.keySet().contains(user);
     }
 
     public static void add(UserModel user) {
         accounts.put(user, user);
     }
+    
 }
