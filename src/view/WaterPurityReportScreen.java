@@ -1,5 +1,7 @@
 package view;
 
+import model.WaterPurityReportModel;
+
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -15,6 +17,11 @@ import javafx.collections.FXCollections;
 
 public class WaterPurityReportScreen extends StackPane {
     private Button submit;
+    private Button back;
+    private TextField waterLat;
+    private TextField waterLong;
+    private TextField virusPPM;
+    private TextField contaminentPPM;
     private ListView<String> conditionView;
     public WaterPurityReportScreen() {
         VBox middle = new VBox();
@@ -22,23 +29,37 @@ public class WaterPurityReportScreen extends StackPane {
         middle.setMaxHeight(900);
         middle.setTranslateY(100);
         Label titleLabel = new Label("Water Purity Report");
-        TextField waterLat = new TextField("Latitude");
-        TextField waterLong = new TextField("Longitude");
+        waterLat = new TextField("Latitude");
+        waterLong = new TextField("Longitude");
         ObservableList<String> condition = FXCollections.observableArrayList(
             "Safe", "Treatable", "Unsafe");
         conditionView = new ListView<String>(condition);
         conditionView.setMaxWidth(300);
         conditionView.setMaxHeight(100);
-        TextField virusPPM = new TextField("Virus PPM");
-        TextField contaminentPPM = new TextField("Contaminent PPM");
+        virusPPM = new TextField("Virus PPM");
+        contaminentPPM = new TextField("Contaminent PPM");
         submit = new Button("submit report");
-        middle.getChildren().addAll(titleLabel, waterLat, waterLong, conditionView, virusPPM, contaminentPPM, submit);
+        back = new Button("back");
+        middle.getChildren().addAll(titleLabel, waterLat, waterLong, conditionView, virusPPM, contaminentPPM, submit, back);
         getChildren().addAll(middle);
         
     }
 
     public Button getSubmitButton() {
         return submit;
+    }
+
+    public Button getBackButton() {
+        return back;
+    }
+
+    public WaterPurityReportModel getReport() {
+        double lat = Double.parseDouble(waterLat.getCharacters().toString());
+        double lon = Double.parseDouble(waterLong.getCharacters().toString());
+        String condition = conditionView.getSelectionModel().getSelectedItem();
+        int virusPPMVal = Integer.parseInt(virusPPM.getCharacters().toString());
+        int contaminentPPMVal = Integer.parseInt(virusPPM.getCharacters().toString());
+        return new WaterPurityReportModel(lat, lon, condition, virusPPMVal, contaminentPPMVal);
     }
 
 }

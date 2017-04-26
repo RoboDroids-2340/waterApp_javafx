@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 
 public class WaterSourceReportScreen extends StackPane {
     private Button submit;
+    private Button back;
     private ListView<String> typeView;
     private ListView<String> conditionView;
     public WaterSourceReportScreen() {
@@ -38,7 +39,8 @@ public class WaterSourceReportScreen extends StackPane {
 
 
         submit = new Button("submit report");
-        middle.getChildren().addAll(titleLabel, waterLat, waterLong, conditionView, typeView, submit);
+        back = new Button("back");
+        middle.getChildren().addAll(titleLabel, waterLat, waterLong, conditionView, typeView, submit, back);
         getChildren().addAll(middle);
         
     }
@@ -47,4 +49,7 @@ public class WaterSourceReportScreen extends StackPane {
         return submit;
     }
 
+    public Button getBackButton() {
+        return back;
+    }
 }

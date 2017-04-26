@@ -49,10 +49,24 @@ public class WaterApp extends Application {
             return new Scene(console);
         }
         else if (layout.equals("waterreport")) {
-            return new Scene(new WaterSourceReportScreen());
+            WaterSourceReportScreen source= new WaterSourceReportScreen();
+            source.getBackButton().setOnAction((e) -> {
+                stage.setScene(setLayout("console", stage));
+            });
+            return new Scene(source);
         }
         else if (layout.equals("waterpurityreport")) {
-            return new Scene(new WaterPurityReportScreen());
+            WaterPurityReportScreen purity = new WaterPurityReportScreen();
+            purity.getBackButton().setOnAction((e) -> {
+                stage.setScene(setLayout("console", stage));
+            });
+            purity.getSubmitButton().setOnAction((e) -> {
+                WaterPurityReportModel report = purity.getReport();
+                System.out.println(report.getId());
+                //ReportWriter.write(report);
+                stage.setScene(setLayout("console", stage));
+            });
+            return new Scene(purity);
         } else {
             return null;
         }
