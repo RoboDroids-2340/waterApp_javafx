@@ -80,6 +80,10 @@ public class WaterApp extends Application {
             source.getBackButton().setOnAction((e) -> {
                 stage.setScene(setLayout("console", stage));
             });
+            source.getSubmitButton().setOnAction((e) -> {
+                WaterSourceReportModel model = source.getReport();
+                stage.setScene(setLayout("console", stage));
+            });
             return new Scene(source);
         }
         else if (layout.equals("waterpurityreport")) {
@@ -89,8 +93,7 @@ public class WaterApp extends Application {
             });
             purity.getSubmitButton().setOnAction((e) -> {
                 WaterPurityReportModel report = purity.getReport();
-                System.out.println(report.getId());
-                //ReportWriter.write(report);
+                ReportWriter.purityReports.add(report);
                 stage.setScene(setLayout("console", stage));
             });
             return new Scene(purity);

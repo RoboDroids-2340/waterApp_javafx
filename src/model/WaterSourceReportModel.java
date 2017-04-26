@@ -1,19 +1,17 @@
 package model;
 import java.io.Serializable;
-public class WaterPurityReportModel implements Serializable {
+public class WaterSourceReportModel implements Serializable {
     public static int numReports = 0;
     private int id;
     private double lat; 
     private double longitude;
     private String condition;
-    private int virusPPM;
-    private int contaminentPPM;
-    public WaterPurityReportModel(double lat, double longitude, String condition, int virusPPM, int contaminentPPM) {
+    private String type;
+    public WaterSourceReportModel(double lat, double longitude, String condition, String type) {
         this.lat = lat;
         this.longitude = longitude;
         this.condition = condition;
-        this.virusPPM = virusPPM;
-        this.contaminentPPM = contaminentPPM;
+        this.type = type;
         this.id = numReports;
         numReports++;
     }
@@ -22,15 +20,14 @@ public class WaterPurityReportModel implements Serializable {
     public double getLat() { return lat; }
     public double getLong() { return longitude; }
     public String getCondition() { return condition; }
-    public int getVirusPPM() { return virusPPM; }
-    public int contaminentPPM() { return contaminentPPM; }
+    public String getType() { return type; }
 
     @Override
     public int hashCode() { return id; }
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof WaterPurityReportModel && ((WaterPurityReportModel) o).getId() == id) {
+        if (o instanceof WaterSourceReportModel && ((WaterSourceReportModel) o).getId() == id) {
             return true;
         }
         return false;
@@ -39,7 +36,8 @@ public class WaterPurityReportModel implements Serializable {
     @Override
     public String toString() {
         return String.format("Report id: %d%n Latitude: %d, Longitude: %d%n Condition: %s%n"
-            + " Virus PPM: %d, Contaminent PPM:%d", id, lat, longitude, condition, virusPPM, contaminentPPM);
+            + " type:%s%n", id, lat, longitude, condition, type);
     }
+
 
 }

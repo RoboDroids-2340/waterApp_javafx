@@ -1,5 +1,7 @@
 package view;
 
+import model.WaterSourceReportModel;
+
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -18,14 +20,16 @@ public class WaterSourceReportScreen extends StackPane {
     private Button back;
     private ListView<String> typeView;
     private ListView<String> conditionView;
+    private TextField waterLat;
+    private TextField waterLong;
     public WaterSourceReportScreen() {
         VBox middle = new VBox();
         middle.setAlignment(Pos.CENTER);
         middle.setMaxHeight(900);
         middle.setTranslateY(100);
         Label titleLabel = new Label("Water Source Report");
-        TextField waterLat = new TextField("Latitude");
-        TextField waterLong = new TextField("Longitude");
+        waterLat = new TextField("Latitude");
+        waterLong = new TextField("Longitude");
         ObservableList<String> type = FXCollections.observableArrayList(
             "Bottled", "Well", "Stream", "Lake", "Spring", "Other");
         typeView = new ListView<String>(type);
@@ -51,5 +55,13 @@ public class WaterSourceReportScreen extends StackPane {
 
     public Button getBackButton() {
         return back;
+    }
+    
+    public WaterSourceReportModel getReport() {
+        double lat = Double.parseDouble(waterLat.getCharacters().toString());
+        double lon = Double.parseDouble(waterLong.getCharacters().toString());
+        String condition = conditionView.getSelectionModel().getSelectedItem();
+        String type = typeView.getSelectionModel().getSelectedItem();
+        return new WaterSourceReportModel(lat, lon, condition, type);
     }
 }
