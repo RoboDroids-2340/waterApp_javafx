@@ -25,11 +25,11 @@ public class WaterApp extends Application {
         if (layout.equals("login")) {
             LoginScreen loginScreen = new LoginScreen();
             loginScreen.getLoginButton().setOnAction((e) -> {
-                TextInputDialog userinput = new TextInputDialog("Username");
+                TextInputDialog userinput = new TextInputDialog("");
                 userinput.setTitle("username");
                 userinput.setContentText("Enter Username: ");
                 Optional<String> username = userinput.showAndWait();
-                TextInputDialog passinput = new TextInputDialog("Password");
+                TextInputDialog passinput = new TextInputDialog("");
                 passinput.setTitle("Password");
                 passinput.setContentText("Enter Password: ");
                 Optional<String> password = passinput.showAndWait();
@@ -39,6 +39,25 @@ public class WaterApp extends Application {
                     }
                 }
             });
+            loginScreen.getRegisterButton().setOnAction((e) -> {
+                TextInputDialog usernameField  = new TextInputDialog("");
+                    usernameField.setTitle("Username");
+                    usernameField.setContentText("Enter Username");
+                    Optional<String> username = usernameField.showAndWait();
+                TextInputDialog passwordField = new TextInputDialog("");
+                    passwordField.setTitle("Password");
+                    passwordField.setContentText("Enter Password");
+                    Optional<String> password = passwordField.showAndWait();
+                TextInputDialog accessField = new TextInputDialog("");
+                    accessField.setTitle("Access Level");
+                    accessField.setContentText("Enter User, Manager, or Admin");
+                    Optional<String> access = accessField.showAndWait();
+                if (username.isPresent() && password.isPresent() && access.isPresent()) {
+                    AccountUtil.add(new UserModel(username.get(), password.get(), UserLevel.valueOf(access.get().toUpperCase())));
+                    stage.setScene(setLayout("console", stage));
+                }
+            });
+            return new Scene(loginScreen);
         }
         else if (layout.equals("console")) {
             ConsoleScreen console = new ConsoleScreen();

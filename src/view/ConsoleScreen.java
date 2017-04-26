@@ -24,7 +24,7 @@ public class ConsoleScreen extends StackPane {
         waterReportButton = new Button("Create New Water Source Report");
         waterPurityButton = new Button("Create New Water Purity Report");
         logoutButton = new Button("Logout");
-        middle.getChildren().addAll(editProfileButton, waterReportLabel, waterReportButton, waterPurityButton, Logout);
+        middle.getChildren().addAll(waterReportLabel, editProfileButton, waterReportButton, waterPurityButton, logoutButton);
         getChildren().addAll(middle);
     }
 
